@@ -12,8 +12,6 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 #collect + save data to csv file
-#the issue though, is that as soon as hands are detected the user is prompted to enter the label
-#this is problematic cause half the time i'm not ready 
 with open('hands_data.csv', 'w', newline='') as f: 
     write = csv.writer(f)
     write.writerow(
@@ -25,27 +23,30 @@ with open('hands_data.csv', 'w', newline='') as f:
         'x21', 'y21', 'z21', 'label']
     )
 
-    while True: 
+    while True:         
         ret, frame = cam.read()
         if not ret: 
             print("Camera failed")
-            break
-        
+            break            
+
         rgb_frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
         myhands = hands.process(rgb_frame)
 
-        if myhands.multi_hand_landmarks:
-            for hand_landmarks in myhands.multi_hand_landmarks:
-                row = list()
-                for landmark in hand_landmarks.landmark: 
-                    row.extend([landmark.x, landmark.y, landmark.z])
-                label = input("Rock, paper, scissors: ")
-                row.append(label)
-                write.writerow(row)
-        
         cv.imshow("Hand", frame)
+
         if cv.waitKey(1) == ord('q'):
             break
+        if cv.waitKey(1) == ord('p'):
+            if myhands.multi_hand_landmarks:
+                for hand_landmarks in myhands.multi_hand_landmarks:
+                    row = list()
+                    for landmark in hand_landmarks.landmark: 
+                        row.extend([landmark.x, landmark.y, landmark.z])
+                    label = input("Rock, paper, scissors: ").strip()
+                    row.append(label)
+                    write.writerow(row)
+            else: 
+                print("No hands detected")
 
 cam.release()
 cv.destroyAllWindows()
