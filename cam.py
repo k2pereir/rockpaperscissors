@@ -4,6 +4,7 @@ from mediapipe.tasks import python
 from mediapipe.python.solutions import hands as mp_hands
 import mediapipe.python.solutions.drawing_utils as mp_draw
 import mediapipe.python.solutions.drawing_styles as drawing_styles
+from mediapipe.tasks.python import vision 
 
 #initialize camera 
 cam = cv.VideoCapture(0)
@@ -32,7 +33,7 @@ while True:
     #rgb to process hands
     rgb_frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
     myhands = hands.process(rgb_frame)
-    
+
     #draw landmarks 
     if myhands.multi_hand_landmarks: 
         for hand_landmarks in myhands.multi_hand_landmarks:
