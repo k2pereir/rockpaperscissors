@@ -4,7 +4,6 @@ from mediapipe.tasks import python
 from mediapipe.python.solutions import hands as mp_hands
 import mediapipe.python.solutions.drawing_utils as mp_draw
 import mediapipe.python.solutions.drawing_styles as drawing_styles
-from mediapipe.tasks.python import vision 
 
 #initialize camera 
 cam = cv.VideoCapture(0)
@@ -15,7 +14,7 @@ cam.set(cv.CAP_PROP_FRAME_HEIGHT, 600)
 hands = mp_hands.Hands(
     static_image_mode = False, 
     max_num_hands = 2,
-    min_detection_confidence = 0.7,
+    min_detection_confidence = 0.5,
 )
 
 #check if camera is opened
