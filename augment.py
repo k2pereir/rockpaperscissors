@@ -1,8 +1,9 @@
 import numpy as np
 import math
+import random 
 
-infile = open('paper.csv', 'r') 
-outfile = open('paper_extended.csv', 'w')
+infile = open('scissors.csv', 'r') 
+outfile = open('scissors_extended.csv', 'w')
 line = infile.readline()
 data = []
 
@@ -18,18 +19,22 @@ infile.close()
 outfile.close()
 
 #add a small random shift to original data 
-def add_random_shift(data, filename): 
+def shift(data, filename): 
+    new_data = []
     outfile = open(filename, 'a')
     for i in range(len(data)):
         landmarks = np.array(data[i])
         shifts = np.random.uniform(-0.1, 0.1, landmarks.shape)
         landmarks = landmarks + shifts
+        new_data.append(landmarks)
         outfile.write(','.join([str(x) for x in landmarks]) + '\n')
         outfile.flush()
     outfile.close()
+    return new_data
 
 #add small rotations to original data 
-def add_random_rotation(data, filename):
+def rotate(data, filename):
+    new_data = []
     #rotate the landmarks by a given angle around a given axis
     def rotate(landmarks, angle, axis): 
         landmarks = np.array(landmarks).reshape(21, 3)
@@ -64,29 +69,52 @@ def add_random_rotation(data, filename):
         angle = np.random.uniform(-20, 20)
         axis = np.random.choice(['x', 'y', 'z'])
         landmarks = rotate(landmarks, angle, axis)
+        new_data.append(landmarks)
         outfile.write(','.join([str(x) for x in landmarks]) + '\n')
         outfile.flush()
     outfile.close()
+    return new_data
 
 #flip original landmarks
-def flip_landmarks(data, filename):
+def flip(data, filename):
+    new_data = []
     outfile = open(filename, 'a')
     for i in range(len(data)):
         landmarks = np.array(data[i]).reshape(21, 3)
         landmarks[:, 0] = -landmarks[:, 0]
         landmarks = landmarks.flatten()
+        new_data.append(landmarks)
         outfile.write(','.join([str(x) for x in landmarks]) + '\n')
         outfile.flush()
     outfile.close() 
+    return(new_data)
 
 #add gaussian noise
-def add_noise(data, filename): 
+def noise(data, filename): 
+    new_data = []
     outfile = open(filename, 'a')
     for i in range(len(data)): 
         landmarks = np.array(data[i])
         noise = np.random.normal(0, 0.05, landmarks.shape)
         landmarks = landmarks + noise
+        new_data.append(landmarks)
         outfile.write(','.join([str(x) for x in landmarks]) + '\n')
         outfile.flush()
     outfile.close()
+    return new_data 
 
+def multiple_augmentations(data, filename): 
+    new_data = shift(data, filename)
+    outfile = open(filename, 'a')
+    augmentations = [shift, rotate, flip, noise]
+    num_augmentations = random.randint(1, 5)
+    for i in range(num_augmentations): 
+        choice = random.choice(augmentations)
+        new_data = choice(new_data, filename)
+    for i in range(len(new_data)):
+        outfile.write(','.join([str(x) for x in new_data[i]]) + '\n')
+        outfile.flush()
+    outfile.close()
+
+for i in range(100):
+    multiple_augmentations(data, 'scissors_extended.csv')
