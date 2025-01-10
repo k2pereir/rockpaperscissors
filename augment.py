@@ -2,8 +2,8 @@ import numpy as np
 import math
 import random 
 
-infile = open('scissors.csv', 'r') 
-outfile = open('scissors_extended.csv', 'w')
+infile = open('./data/scissors.csv', 'r') 
+outfile = open('./data/scissors_extended.csv', 'w')
 line = infile.readline()
 data = []
 
@@ -117,4 +117,4 @@ def multiple_augmentations(data, filename):
     outfile.close()
 
 for i in range(100):
-    multiple_augmentations(data, 'scissors_extended.csv')
+    multiple_augmentations(data, './data/scissors_extended.csv')

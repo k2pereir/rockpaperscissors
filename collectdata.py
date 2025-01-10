@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 #collect + save data to csv file
-with open('hands_data.csv', 'w', newline='') as f: 
+with open('./data/hands_data.csv', 'w', newline='') as f: 
     write = csv.writer(f)
     write.writerow(
         ['x1', 'y1', 'z1', 'x2', 'y2', 'z2', 'x3', 'y3', 'z3', 'x4', 'y4', 'z4', 

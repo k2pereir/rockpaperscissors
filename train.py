@@ -14,11 +14,11 @@ def _is_distributed_dataset(ds):
 data_adapter._is_distributed_dataset = _is_distributed_dataset
 
 #load data 
-rock = pd.read_csv('rock_extended.csv', header=None)
+rock = pd.read_csv('./data/rock_extended.csv', header=None)
 rock['label'] = 0
-paper = pd.read_csv('paper_extended.csv', header=None)
+paper = pd.read_csv('./data/paper_extended.csv', header=None)
 paper['label'] = 1
-scissors = pd.read_csv('scissors_extended.csv', header=None)
+scissors = pd.read_csv('./data/scissors_extended.csv', header=None)
 scissors['label'] = 2
 print("success in loading")
 

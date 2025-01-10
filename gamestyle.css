@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(213, 255, 255);;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+    text-align: center; 
+}
+
+.greetings {
+    font-weight: bold;
+    color: rgb(240, 137, 154);  
+}
+
+.game-box {
+    width: 900px; 
+    height: 700px; 
+    outline: 5px solid rgb(240, 137, 154);
+    margin: 0 auto; 
+}
+
+#time {
+    font-size: 100px; 
+    color: rgb(240, 137, 154);  
+    padding-top: 30%;    
+}

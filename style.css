@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(213, 255, 255);;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+    text-align: left; 
+}
+
+.greetings {
+    font-weight: bold;
+    text-align: left;
+    color: rgb(240, 137, 154);  
+}
+
+.next {
+    display: block; 
+    font-size: 20px;
+    font-weight: bold;
+    outline: 5px solid rgb(240, 137, 154);
+    text-align: center; 
+    width: fit-content; 
+    text-decoration: none; 
+    color: black; 
+    background-color: rgb(240, 137, 154);
+}

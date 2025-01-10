@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        <link rel="stylesheet" href="./gamestyle.css">
+    </head>
+    <body>
+        <header>
+            <h1 class="greetings">welcome to rock, paper, scissors</h1>
+            <div class="game-box">
+                <div id="time"></div>
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById("time").innerHTML = "3"; 
+                }, 1000);
+                setTimeout(function() {
+                    document.getElementById("time").innerHTML = "2"; 
+                }, 2000);
+                setTimeout(function() {
+                    document.getElementById("time").innerHTML = "1"; 
+                }, 3000);
+            </script>
+        </header>
+    </body>
+</html>
