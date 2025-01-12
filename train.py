@@ -63,5 +63,5 @@ history = model.fit(landmarks, labels, epochs=20, batch_size=32, validation_spli
 test_loss, test_acc = model.evaluate(X_test, y_test)
 
 #save model
-model.save('rps_model/my_model')
+model.save('rpsmodel.h5')
 print("saved!!")
