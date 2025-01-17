@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+                <h1 class="greetings">hi.</h1>
+                <p>do you love rock, paper, scissors but have no friends or family who care enough about you to play for hours on end so you scavenged the corners of the internet to find a single player version in which you can pretend you have a friend to play with and stumbled across this and thought 'absolutely perfect'</p>
+                <p>cause same</p>
+                <p>except i made this instead, for fine folks such as yourself</p>
+                <p>please enjoy :p</p>       
+        </header>
+        <a class='next' href="{{url_for('game')}}">Start</a>
+    </body>
+</html>
