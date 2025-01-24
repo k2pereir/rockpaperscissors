@@ -44,3 +44,17 @@ def user_plays():
         if cv.waitKey(1) == ord('q'):
             break
     return user
+
+
+#THIS DOES NOT WORK! PLS IGNORE!
+def testing(myhands): 
+    if myhands.multi_hand_landmarks: 
+        for hand_landmarks in myhands.multi_hand_landmarks:
+            row = list()
+            for landmark in hand_landmarks.landmark:
+                row.extend([landmark.x, landmark.y, landmark.z])
+            row = np.array(row)
+            row = row / np.max(np.abs(row), axis=0)
+            prediction = model.predict(np.expand_dims(row, axis=0))
+            predict = np.argmax(prediction)
+            return ['rock', 'paper', 'scissors'][predict]

@@ -14,7 +14,16 @@ body {
     width: 900px; 
     height: 700px; 
     outline: 5px solid rgb(240, 137, 154);
-    margin: 0 auto; 
+    margin-left: 320px; 
+    padding-top: 0px; 
+}
+
+#game-vid {
+    position: relative; 
+    width: 80%;
+    height: 80%; 
+    padding-top: 56.25%; 
+    top: -110.8%; 
 }
 
 #time {

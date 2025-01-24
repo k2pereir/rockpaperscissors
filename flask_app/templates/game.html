@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome</title>
+        <title>Game</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='gamestyle.css') }}">
     </head>
     <body>
@@ -11,17 +11,27 @@
             <h1 class="greetings">welcome to rock, paper, scissors</h1>
             <div class="game-box">
                 <div id="time"></div>
+                <img id ="game-vid" src="/video" alt = "rock, paper, scissors" style="display: none;">
             </div>
             <script>
                 setTimeout(function() {
-                    document.getElementById("time").innerHTML = "3"; 
+                    document.getElementById("time").innerHTML = "rock"; 
                 }, 1000);
                 setTimeout(function() {
-                    document.getElementById("time").innerHTML = "2"; 
+                    document.getElementById("time").innerHTML = "paper"; 
                 }, 2000);
                 setTimeout(function() {
-                    document.getElementById("time").innerHTML = "1"; 
+                    document.getElementById("time").innerHTML = "scissors"; 
                 }, 3000);
+                setTimeout(function() {
+                    document.getElementById("time").innerHTML = "shoot"; 
+                }, 4000);
+                setTimeout(function() {
+                    document.getElementById("time").innerHTML = ""; 
+                }, 5000);
+                setTimeout(function() {
+                    document.getElementById("game-vid").style.display = "block"; 
+                }, 5000);
             </script>
         </header>
     </body>
