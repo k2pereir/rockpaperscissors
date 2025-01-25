@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, Response
-from game import testing
+from flask import Flask, render_template, request, Response, jsonify
+from game import vid_processing
 import cv2 as cv 
 import mediapipe as mp 
+import random
 
 app = Flask(__name__)
 
@@ -36,7 +37,6 @@ def game():
 def video(): 
     return Response(video_feed(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-#THIS ALSO DOES NOT WORK! BUT PROBABLY CAUSE TESTING DOESN'T WORK! 
 @app.route('/process_video')
 def process(): 
     ret, frame = cam.read()
@@ -45,8 +45,26 @@ def process():
         return None
     rgb_frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
     myhands = hands.process(rgb_frame)  
-    user = testing(myhands)
-    print(f"{user}")
+    user = vid_processing(myhands)
+    return jsonify({"result": user})
+
+@app.route("/find_winner")
+def find_winner(): 
+    print("I'm in here!!!!!!!!!!")
+    user = request.args.get("user")
+    comp = random.choice(["rock", "paper", "scissors"])
+
+    if not user: 
+        return jsonify({"result": "Please make a choice!"})
+
+    winnings = {"rock": "scissors", "paper": "rock", "scissors": "paper"}
+    if user == comp: 
+        result = "It's a tie!"
+    elif winnings[user] == comp: 
+        result = "You have won!!"
+    else: 
+        result = "You have lost :("
+    return jsonify({"result": result})
 
 @app.route('/cleanup')
 def cleanup(): 

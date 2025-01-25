@@ -13,6 +13,24 @@
                 <div id="time"></div>
                 <img id ="game-vid" src="/video" alt = "rock, paper, scissors" style="display: none;">
             </div>
+            <div>
+                <button onclick="process()">Process results</button>
+                <p id="result"></p>
+            </div>
+            <script>
+                async function process() {
+                    const response = await fetch('/process_video');
+                    const user_move = await response.json();
+                    if (user_move.result) {
+                        const winning_statement = await fetch(`/find_winner?user=${user_move.result}`);
+                        const winner = await winning_statement.json();
+                        document.getElementById("result").innerHTML = winner.result;
+                    }
+                    else {
+                        document.getElementById("result").innerHTML = "No move detected";
+                }
+                }
+            </script>
             <script>
                 setTimeout(function() {
                     document.getElementById("time").innerHTML = "rock"; 
@@ -28,10 +46,10 @@
                 }, 4000);
                 setTimeout(function() {
                     document.getElementById("time").innerHTML = ""; 
-                }, 5000);
+                }, 4200);
                 setTimeout(function() {
                     document.getElementById("game-vid").style.display = "block"; 
-                }, 5000);
+                }, 4200);
             </script>
         </header>
     </body>
