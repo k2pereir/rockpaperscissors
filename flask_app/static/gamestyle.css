@@ -31,3 +31,13 @@ body {
     color: rgb(240, 137, 154);  
     padding-top: 30%;    
 }
+
+.process-button {
+    background-color: rgb(240, 137, 154);
+    color: rgb(213, 255, 255)
+}
+
+#result {
+    font-size: 50px; 
+    color: rgb(240, 137, 154); 
+}

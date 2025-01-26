@@ -50,7 +50,6 @@ def process():
 
 @app.route("/find_winner")
 def find_winner(): 
-    print("I'm in here!!!!!!!!!!")
     user = request.args.get("user")
     comp = random.choice(["rock", "paper", "scissors"])
 
@@ -59,11 +58,11 @@ def find_winner():
 
     winnings = {"rock": "scissors", "paper": "rock", "scissors": "paper"}
     if user == comp: 
-        result = "It's a tie!"
+        result = f"It's a tie! You both played {user}"
     elif winnings[user] == comp: 
-        result = "You have won!!"
+        result = f"You have won!! You played {user} and your opponent played {comp}"
     else: 
-        result = "You have lost :("
+        result = f"You have lost!! You played {user} and your opponent played {comp}"
     return jsonify({"result": result})
 
 @app.route('/cleanup')
